@@ -123,3 +123,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+Terraria NPC Optimizer.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/checkstyle-idea.xml
