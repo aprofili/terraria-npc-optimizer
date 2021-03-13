@@ -126,12 +126,12 @@ class Home(QWidget):
         # m.addConstrs((quicksum([y[i, b] for b in range(8)]) <= 8 * collectList[i] for i in range(26)), name = "non-collected cannot have biomes")
 
 
-        if self.pylonBox.isChecked:
+        if self.pylonBox.isChecked():
             m.addConstrs((quicksum([y[i, b] for i in range(26)]) >= 1 for b in range(8)), name = "fill all pylon biomes")
 
 
         # %% define objective
-        m.setObjective(         quicksum([     collectList[i] *   (0.1 + 0.9 * prioritizeList[i])        *   (1     +   0.05 * p[i]    +  quicksum([      NPCRelationMatrix[i][j] * x[i, j]                   for j in range(26)])           + quicksum([     NPCBiomeMatrix[i][b] * y[i, b]         for b in range(8)]))              for i in range(26)])   - 0.0001 * quicksum([quicksum([x[i, j] for i in range(26)]) for j in range(26)])   , GRB.MINIMIZE)
+        m.setObjective(         quicksum([     collectList[i] *   (0.1 + 0.9 * prioritizeList[i])        *   (1     +   0.05 * p[i]    +  quicksum([      NPCRelationMatrix[i][j] * x[i, j]                   for j in range(26)])           + quicksum([     NPCBiomeMatrix[i][b] * y[i, b]         for b in range(8)]))              for i in range(26)])   - 0.00001 * quicksum([quicksum([x[i, j] for i in range(26)]) for j in range(26)])   , GRB.MINIMIZE)
         # +  0.05 * quicksum([x[i, j] for j in range(26)])
 
 
